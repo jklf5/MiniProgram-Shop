@@ -16,8 +16,8 @@ async function detailAction(ctx) {
     }).select()
 
     ctx.body = {
-        'info': info,
-        'gallery': 'gallery'
+        'info': info[0] || [],
+        'gallery': gallery
     }
 }
 

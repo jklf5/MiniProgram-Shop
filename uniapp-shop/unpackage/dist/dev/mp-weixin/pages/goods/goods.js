@@ -153,18 +153,58 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
 {
   data: function data() {
     return {
-      info: "", //商品信息
+      info: {}, //商品信息
       gallery: [], // 商品图片
       id: "",
-      openId: "" };
+      openId: "",
+      brand: [],
+      showpop: false };
+
+  },
+  // 商品分享配置
+  onShareAppMessage: function onShareAppMessage() {
+    return {
+      title: this.info.name,
+      path: "pages/goods/main?id" + this.info.id,
+      imageUrl: this.gallery[0].img_url };
 
   },
   mounted: function mounted() {
     this.openId = wx.getStorageSync("openId") || "";
+    this.id = this.$root.$mp.query.id;
     this.goodsDetail();
   },
   methods: {
@@ -173,12 +213,15 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
 
 
                   (0, _utils.get)("/goods/detailaction", {
-                    id: 1009024,
+                    id: _this.id,
                     openId: _this.openId }));case 2:data = _context.sent;
 
                 console.log(data);
                 _this.info = data.info;
                 _this.gallery = data.gallery;case 6:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    showType: function showType() {
+      this.showpop = !this.showpop;
     } } };exports.default = _default;
 
 /***/ }),
