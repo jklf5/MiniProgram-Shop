@@ -1,7 +1,32 @@
-# MiniProgram-Shop
+# MiniProgram-Shop 项目说明
 
-使用 Vue+Koa 开发小程序
+使用 Vue+Koa 开发微信微商城小程序
 
-使用 **npm install** 可直接安装 **package.json** 中的依赖
+## 文件夹说明
+| 文件夹      | 说明                                      |
+| ----------- | ----------------------------------------- |
+| koa-shop    | 使用Koa作为小程序和后台管理系统的开发框架 |
+| mpvue-shop  | 使用mpvue作为小程序前端开发框架           |
+| uniapp-shop | 迁移至uniapp作为小程序前端开发框架        |
 
-安装 **nodemon** 需要改为全局 **-g** 安装
+
+# 部署
+
+使用 `npm install` 安装所需依赖。
+
+## Koa
+
+**nodemon** 需要添加 `-g` 来安装
+
+项目目录下 `nodemon app.js` 启动 **Koa** 后台
+
+## mpvue
+
+1. 项目目录下 `npm run dev` 生成小程序项目文件夹 **dist** 
+2. 用微信开发者工具打开 **dist** 下的小程序项目
+
+## uni-app
+
+1. 使用 **HBuilder** 打开 **uniapp** 项目。
+2. 打开**微信开发者工具->设置->安全**，打开**服务端口**并记下**端口号**。在**HBuilder**的**工具->设置**中配置好**外部web服务器调用url（需使用上述端口号）**和**微信开发者工具路径**。
+3. 使用**HBuilder**自带的**运行**打开项目

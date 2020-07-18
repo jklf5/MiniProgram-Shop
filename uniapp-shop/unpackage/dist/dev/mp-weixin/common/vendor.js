@@ -7625,9 +7625,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!**********************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/pages.json ***!
-  \**********************************************************************/
+/*!****************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/pages.json ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8718,9 +8718,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 12 */
-/*!**************************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/store/index.js ***!
-  \**************************************************************************/
+/*!********************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/store/index.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9541,9 +9541,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 22 */
-/*!****************************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/utils/amap-wx.js ***!
-  \****************************************************************************/
+/*!**********************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/utils/amap-wx.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9551,9 +9551,9 @@ function AMapWX(a) {this.key = a.key, this.requestConfig = { key: a.key, s: "rsx
 
 /***/ }),
 /* 23 */
-/*!**************************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/utils/index.js ***!
-  \**************************************************************************/
+/*!********************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/utils/index.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9579,9 +9579,9 @@ function formatTime(date) {
 }
 
 // ---------------------请求的封装
-// const host = "http://localhost:5757/miniprogram"
-var host = "http://47.100.114.71:5757/miniprogram";exports.host = host;
-
+var host = "http://localhost:5757/miniprogram";
+// const host = "http://47.100.114.71:5757/miniprogram"
+exports.host = host;
 // 请求封装
 function request(url, method, data) {var header = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   wx.showLoading({
@@ -9630,9 +9630,9 @@ function post(url, data) {
 /* 28 */,
 /* 29 */,
 /* 30 */
-/*!************************************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/static/images/search.png ***!
-  \************************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/static/images/search.png ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9640,9 +9640,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF
 
 /***/ }),
 /* 31 */
-/*!*****************************************************************************************!*\
-  !*** E:/allFile/微信小程序/UNIAPP-KOA/shop-uniapp/shop-uniapp/static/images/clear_input.png ***!
-  \*****************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** E:/allFile/微信小程序/UNIAPP-MPVUE-KOA/uniapp-shop/static/images/clear_input.png ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
