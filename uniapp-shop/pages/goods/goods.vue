@@ -27,7 +27,7 @@
       <div class="item">7天无理由</div>
     </div>
 
-    <!-- 描述商品信息 -->
+    <!-- 描述商品基本信息（名字、简单描述、价格） -->
     <div class="goods-info">
       <div class="c">
         <p>{{info.name}}</p>
@@ -45,22 +45,116 @@
       <div></div>
     </div>
 
+    <!-- 商品规格参数 -->
+    <div class="attribute">
+      <div class="head">商品参数</div>
+      <div class="item" v-for="(item, index) in attribute" :key="index">
+        <div>{{item.name}}</div>
+        <div>{{item.value}}</div>
+      </div>
+    </div>
+
+    <!-- 商品详情展示 -->
+    <div class="detail" v-if="goods_desc">
+      <u-parse :content="goods_desc"></u-parse>
+    </div>
+
+    <!-- 常见问题 -->
+    <div class="common-problem">
+      <div class="head">
+        <text class="title">常见问题</text>
+      </div>
+      <div class="bottom">
+        <div class="item" v-for="(item, index) in issueList" :key="index">
+          <div class="question-box">
+            <text class="spot"></text>
+            <text class="question">{{item.question}}</text>
+          </div>
+          <div class="answer">{{item.answer}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 大家都在看 -->
+    <div class="common-problem">
+      <div class="head">
+        <text class="title">大家都在看</text>
+      </div>
+      <div class="sublist">
+        <div v-for="(reitem, reindex) in recommendList" :key="reindex">
+          <img :src="reitem.list_pic_url" alt />
+          <p>{{reitem.name}}</p>
+          <p>￥{{reitem.retail_price}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 最底部（收藏，加入购物车等） -->
+    <div class="bottom-fixed">
+      <div class="collect-box" @click="collect">
+        <div class="collect" :class="[collectFlag ? 'active' : '']"></div>
+      </div>
+      <div class="cart-box" @click="toCart">
+        <div class="cart">
+          <span>{{allNumber}}</span>
+          <img src="../../static/images/ic_menu_shopping_nor.png" alt />
+        </div>
+      </div>
+      <div @click="buy">立即购买</div>
+      <div @click="addCart">加入购物车</div>
+    </div>
+
     <!-- 选择规格数量的弹出框 -->
+    <div class="pop" v-show="showpop" @click="showType"></div>
+    <div class="attr-pop" :class="[showpop ? 'fadeup' : 'fadedown']">
+      <div class="top">
+        <div class="left">
+          <img :src="info.primary_pic_url" alt />
+        </div>
+        <div class="right">
+          <div>
+            <p>价格￥{{info.retail_price}}</p>
+            <p>请选择数量</p>
+          </div>
+        </div>
+        <div class="close" @click="showType">✖️</div>
+      </div>
+      <div class="bottom">
+        <p>数量</p>
+        <div class="count">
+          <div class="cut" @click="reduce">-</div>
+          <input type="text" class="number" v-model="number" disabled="false" />
+          <div class="add" @click="add">+</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { get, post } from "../../utils";
+import uParse from "@/components/u-parse/u-parse.vue";
 export default {
   data() {
     return {
       info: {}, //商品信息
       gallery: [], // 商品图片
-      id: "",
-      openId: "",
-      brand: [],
-      showpop: false
+      id: "", // 商品id
+      openId: "", // 用户id
+      brand: [], // 商品简短描述
+      showpop: false, // 是否弹出选择规格数量
+      number: 1, // 选择商品数量的默认值
+      attribute: [], // 商品规格参数
+      goods_desc: "", // 商品详情
+      issueList: [], // 常见问题
+      recommendList: [], // 大家都在看数据
+      collectFlag: false, // 控制收藏状态
+      allNumber: 0
     };
+  },
+  // 使用富文本解析器：uparse
+  components: {
+    uParse
   },
   // 商品分享配置
   onShareAppMessage() {
@@ -71,7 +165,7 @@ export default {
     };
   },
   mounted() {
-    this.openId = wx.getStorageSync("openId") || "";
+    this.openId = uni.getStorageSync("openId") || "";
     this.id = this.$root.$mp.query.id;
     this.goodsDetail();
   },
@@ -87,9 +181,37 @@ export default {
       console.log(data);
       this.info = data.info;
       this.gallery = data.gallery;
+      this.attribute = data.attribute;
+      this.goods_desc = data.info.goods_desc;
+      this.issueList = data.issue;
+      this.recommendList = data.recommendList;
+      this.collectFlag = data.collectFlag;
+      this.allNumber = data.allNumber;
     },
     showType() {
       this.showpop = !this.showpop;
+    },
+    add() {
+      this.number += 1;
+    },
+    reduce() {
+      if (this.number > 1) {
+        this.number -= 1;
+      } else {
+        return false;
+      }
+    },
+    async collect() {
+      this.collectFlag = !this.collectFlag;
+      const data = await post("/collect/addcollect", {
+        openId: this.openId,
+        goodsId: this.id
+      });
+    },
+    toCart() {
+      uni.switchTab({
+        url: "/pages/cart/cart"
+      });
     }
   }
 };
@@ -97,4 +219,5 @@ export default {
 
 <style lang="less" scoped>
 @import "./style.less";
+@import url("@/components/u-parse/u-parse.css");
 </style>

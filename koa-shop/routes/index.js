@@ -34,4 +34,9 @@ mp_router.get('/search/helperaction', mp_controllers.search.index.helperAction)
 // 获取商品详情
 mp_router.get('/goods/detailaction', mp_controllers.goods.index.detailAction)
 
+/**
+ * 商品收藏
+ */
+mp_router.post('/collect/addcollect', mp_controllers.collect.index.addCollect)
+
 module.exports = mp_router

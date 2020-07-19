@@ -127,7 +127,7 @@
       </div>
     </div>
 
-    <!-- 好物商品 -->
+    <!-- 各种门类的好物商品 -->
     <div class="newcategory">
       <div class="list" v-for="(item, index) in newCategoryList" :key="index">
         <div class="head">{{ item.name }}好物</div>
@@ -156,13 +156,13 @@ import { get } from "../../utils";
 export default {
   data() {
     return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
+      banner: [], // 轮播图数据
+      channel: [], // 子频道数据
+      brandList: [], // 品牌制造商直供数据
+      newGoods: [], // 新品首发数据
+      hotGoods: [], // 好物精选数据
+      topicList: [], // 专题精选数据
+      newCategoryList: [] // 各种门类的好物商品数据
     };
   },
   computed: {
@@ -176,9 +176,9 @@ export default {
   methods: {
     ...mapMutations(["update"]),
     toMappage() {
-		/**
-		 * 位置的点击事件
-		 */
+      /**
+       * 位置的点击事件
+       */
       // 通过 wx.getSetting 先查询一下用户是否授权 "scoped.record"
       let _this = this;
       uni.getSetting({
@@ -206,9 +206,9 @@ export default {
     },
 
     getCityName() {
-		/**
-		 * 调用高德api 获取地理信息
-		 */
+      /**
+       * 调用高德api 获取地理信息
+       */
       let _this = this;
       var myAmapFun = new amapFile.AMapWX({
         key: "9723bca47dcc13224b0cc55e9322bb9e"
@@ -228,9 +228,9 @@ export default {
     },
 
     async getData() {
-		/**
-		 * 请求数据(轮播图数据，频道数据等)
-		 */
+      /**
+       * 请求数据(轮播图数据，频道数据等)
+       */
       const data = await get("/index/index");
       // console.log(data);
       this.banner = data.banner;
@@ -241,47 +241,47 @@ export default {
       this.topicList = data.topicList;
       this.newCategoryList = data.newCategoryList;
     },
- 
+
     toSearch() {
-		/**
-		 * 搜索跳转
-		 */
+      /**
+       * 搜索跳转
+       */
       uni.navigateTo({
         url: "/pages/search/search"
       });
     },
 
     categoryList(id) {
-		/**
-		 * 频道页面跳转
-		 */
+      /**
+       * 频道页面跳转
+       */
       uni.navigateTo({
         url: "/pages/categorylist/categorylist?id=" + id
       });
     },
 
     brandDetail(id) {
-		/**
-		 * 品牌页面跳转
-		 */
+      /**
+       * 品牌页面跳转
+       */
       uni.navigateTo({
         url: "/pages/branddetail/main?id=" + id
       });
     },
 
     toBrandList() {
-		/**
-		 * 点击品牌制造商直供后跳转
-		 */
+      /**
+       * 点击品牌制造商直供后跳转
+       */
       uni.navigateTo({
         url: "/pages/brandlist/brandlist"
       });
     },
 
     goodsList(info) {
-		/**
-		 * 新品首发和好物精选跳转
-		 */
+      /**
+       * 新品首发和好物精选跳转
+       */
       if (info == "hot") {
         uni.navigateTo({
           url: "/pages/newgoods/newgoods?isHot=" + 1
@@ -294,9 +294,9 @@ export default {
     },
 
     topicDetail(id) {
-		/**
-		 * 专题精选跳转
-		 */
+      /**
+       * 专题精选跳转
+       */
       uni.navigateTo({
         url: "/pages/topicdetail/topicdetail?id=" + id
       });

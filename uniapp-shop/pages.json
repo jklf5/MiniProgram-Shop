@@ -115,5 +115,11 @@
       }
     ],
     "position": "bottom"
+  },
+  "plugins": {
+    "wxparserPlugin": {
+      "version": "0.3.0",
+      "provider": "wx9d4d4ffa781ff3ac"
+    }
   }
 }

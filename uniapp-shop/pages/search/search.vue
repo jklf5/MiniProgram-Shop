@@ -101,20 +101,21 @@ import { get, post } from "../../utils";
 export default {
   data() {
     return {
-      words: "",
-      openid: "",
-      defaultKeyword: [],
-      historyData: [],
-      hotKeywordList: [],
-      tipsData: [],
-      order: "",
-      goodsListData: [],
-      nowIndex: 0
+      words: "", // 当前输入的关键字
+      openid: "", // 用户id
+      defaultKeyword: [], // 热门搜索中显示红色的数据
+      historyData: [], // 历史记录信息
+      hotKeywordList: [], // 热门搜索关键字信息
+      tipsData: [], // 搜索候选提示数据
+      order: "", // 价格是正序还是倒序
+      goodsListData: [], // 商品数据列表
+      nowIndex: 0 // 控制哪个商品排序是红色字体
     };
   },
   mounted() {
-    // 取授权后的openid
+    // 进入页面清空搜索关键字
     this.words = "";
+    // 取授权后的openid
     this.openid = uni.getStorageSync("openId") || "";
     // console.log(this.openid);
     this.getHistoryHotData();
