@@ -63,6 +63,18 @@
       "style": {
         "navigationBarTitleText": ""
       }
+    },
+    {
+      "path": "pages/order/order",
+      "style": {
+        "navigationBarTitleText": "订单"
+      }
+    },
+    {
+      "path": "pages/atest/atest",
+      "style": {
+        "navigationBarTitleText": "测试"
+      }
     }
   ],
   "permission": {

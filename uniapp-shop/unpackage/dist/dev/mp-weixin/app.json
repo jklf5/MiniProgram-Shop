@@ -10,7 +10,9 @@
     "pages/mappage/mappage",
     "pages/brandlist/brandlist",
     "pages/newgoods/newgoods",
-    "pages/topicdetail/topicdetail"
+    "pages/topicdetail/topicdetail",
+    "pages/order/order",
+    "pages/atest/atest"
   ],
   "subPackages": [],
   "window": {
@@ -60,5 +62,6 @@
     "position": "bottom"
   },
   "permission": {},
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap54.json"
 }

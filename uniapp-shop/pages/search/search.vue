@@ -16,7 +16,12 @@
           @confirm="searchWords"
         />
         <!-- http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png -->
-        <img @click="clearInput" class="del" src="../../static/images/clear_input.png" alt />
+        <img
+          @click="clearInput"
+          class="del"
+          src="../../static/images/clear_input.png"
+          alt
+        />
       </div>
       <div @click="cancel">取消</div>
     </div>
@@ -29,7 +34,9 @@
           :key="index"
           @click="searchWords"
           :data-value="item.name"
-        >{{item.name}}</div>
+        >
+          {{ item.name }}
+        </div>
       </div>
       <div class="nogoods" v-else>数据库暂无此类商品...</div>
     </div>
@@ -46,7 +53,9 @@
           :key="index"
           @click="searchWords"
           :data-value="item.keyword"
-        >{{item.keyword}}</div>
+        >
+          {{ item.keyword }}
+        </div>
       </div>
     </div>
 
@@ -62,13 +71,17 @@
           :key="deindex"
           @click="searchWords"
           :data-value="deitem.keyword"
-        >{{deitem.keyword}}</div>
+        >
+          {{ deitem.keyword }}
+        </div>
         <div
           v-for="(item, index) in hotKeywordList"
           :key="index"
           @click="searchWords"
           :data-value="item.keyword"
-        >{{item.keyword}}</div>
+        >
+          {{ item.keyword }}
+        </div>
       </div>
     </div>
 
@@ -76,9 +89,19 @@
     <div class="goodsList" v-if="goodsListData.length !== 0">
       <div class="sortnav">
         <!-- 点击哪个，哪个就显示红色，默认综合显示红色 -->
-        <div @click="changeTab(0)" :class="[0 === nowIndex ? 'active' : '']">综合</div>
-        <div @click="changeTab(1)" class="price" :class="[1 === nowIndex ? 'active' : '', order]">价格</div>
-        <div @click="changeTab(2)" :class="[2 === nowIndex ? 'active' : '']">分类</div>
+        <div @click="changeTab(0)" :class="[0 === nowIndex ? 'active' : '']">
+          综合
+        </div>
+        <div
+          @click="changeTab(1)"
+          class="price"
+          :class="[1 === nowIndex ? 'active' : '', order]"
+        >
+          价格
+        </div>
+        <div @click="changeTab(2)" :class="[2 === nowIndex ? 'active' : '']">
+          分类
+        </div>
       </div>
       <div class="sortlist">
         <div
@@ -88,8 +111,8 @@
           :key="index"
         >
           <img :src="item.list_pic_url" alt />
-          <p class="name">{{item.name}}</p>
-          <p class="price">￥{{item.retail_price}}</p>
+          <p class="name">{{ item.name }}</p>
+          <p class="price">￥{{ item.retail_price }}</p>
         </div>
       </div>
     </div>
@@ -109,9 +132,12 @@ export default {
       tipsData: [], // 搜索候选提示数据
       order: "", // 价格是正序还是倒序
       goodsListData: [], // 商品数据列表
-      nowIndex: 0 // 控制哪个商品排序是红色字体
+      nowIndex: 0, // 控制哪个商品排序是红色字体
     };
   },
+  // onLoad() {
+  //   this.words = "";
+  // },
   mounted() {
     // 进入页面清空搜索关键字
     this.words = "";
@@ -136,7 +162,7 @@ export default {
        */
       uni.navigateBack({
         // delta为几就返回第几层页面
-        delta: 1
+        delta: 1,
       });
     },
 
@@ -145,7 +171,7 @@ export default {
        * 清除历史记录
        */
       const data = await post("/search/clearhistoryaction", {
-        openId: this.openid
+        openId: this.openid,
       });
       // console.log(data);
       if (data) {
@@ -179,7 +205,7 @@ export default {
       this.words = value || this.words;
       const data = await post("/search/addhistoryaction", {
         openId: this.openid,
-        keyword: value || this.words
+        keyword: value || this.words,
       });
       // console.log(data);
       this.getHistoryHotData();
@@ -205,7 +231,7 @@ export default {
        */
       const data = await get("/search/helperaction", {
         keyword: this.words,
-        order: this.order
+        order: this.order,
       });
       this.goodsListData = data.keywords;
       // 当页面请求到数据了，就不要候选提示了
@@ -223,10 +249,10 @@ export default {
     },
     goodsDetail(id) {
       uni.navigateTo({
-        url: "/pages/goods/goods?id=" + id
+        url: "/pages/goods/goods?id=" + id,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

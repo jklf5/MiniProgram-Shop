@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uParse: function() {
-    return Promise.all(/*! import() | components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/components/u-parse/u-parse.vue */ 95))
+    return Promise.all(/*! import() | components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/components/u-parse/u-parse.vue */ 109))
   }
 }
 var render = function() {
@@ -278,7 +278,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uParse = function uParse() {Promise.all(/*! require.ensure | components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/u-parse/u-parse")]).then((function () {return resolve(__webpack_require__(/*! @/components/u-parse/u-parse.vue */ 95));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uParse = function uParse() {Promise.all(/*! require.ensure | components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/u-parse/u-parse")]).then((function () {return resolve(__webpack_require__(/*! @/components/u-parse/u-parse.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
@@ -295,8 +297,9 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
       issueList: [], // 常见问题
       recommendList: [], // 大家都在看数据
       collectFlag: false, // 控制收藏状态
-      allNumber: 0 };
-
+      allNumber: 0, // 购物车角标显示数据库里有多少件商品
+      allPrice: 0 // 当前商品想添加进购物车的总价格
+    };
   },
   // 使用富文本解析器：uparse
   components: {
@@ -358,7 +361,35 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
       uni.switchTab({
         url: "/pages/cart/cart" });
 
-    } } };exports.default = _default;
+    },
+    buy: function buy() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var data;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                _this3.allPrice = _this3.info.retail_price;if (!
+                _this3.showpop) {_context3.next = 11;break;}if (!(
+                _this3.number === 0)) {_context3.next = 5;break;}
+                uni.showToast({
+                  title: "请选择商品数量",
+                  duration: 2000,
+                  icon: "none",
+                  mask: true,
+                  success: function success(res) {} });return _context3.abrupt("return",
+
+                false);case 5:_context3.next = 7;return (
+
+                  (0, _utils.post)("/order/submitaction", {
+                    goodsId: _this3.id,
+                    openId: _this3.openId,
+                    allPrice: _this3.allPrice }));case 7:data = _context3.sent;
+
+                if (data) {
+                  uni.navigateTo({
+                    url: "/pages/order/order" });
+
+                }_context3.next = 12;break;case 11:
+
+                _this3.showpop = true;case 12:case "end":return _context3.stop();}}}, _callee3);}))();
+
+    },
+    addCart: function addCart() {} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

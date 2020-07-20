@@ -17,7 +17,9 @@
         </blok>
       </swiper>
       <!-- 小程序分享 -->
-      <button class="share" hover-class="none" open-type="share" value>分享商品</button>
+      <button class="share" hover-class="none" open-type="share" value>
+        分享商品
+      </button>
     </div>
 
     <!-- 商品服务政策 -->
@@ -30,11 +32,11 @@
     <!-- 描述商品基本信息（名字、简单描述、价格） -->
     <div class="goods-info">
       <div class="c">
-        <p>{{info.name}}</p>
-        <p>{{info.goods_brief}}</p>
-        <p>￥{{info.retail_price}}</p>
+        <p>{{ info.name }}</p>
+        <p>{{ info.goods_brief }}</p>
+        <p>￥{{ info.retail_price }}</p>
         <div class="brand" v-if="brand.name">
-          <p>{{brand.name}}</p>
+          <p>{{ brand.name }}</p>
         </div>
       </div>
     </div>
@@ -49,8 +51,8 @@
     <div class="attribute">
       <div class="head">商品参数</div>
       <div class="item" v-for="(item, index) in attribute" :key="index">
-        <div>{{item.name}}</div>
-        <div>{{item.value}}</div>
+        <div>{{ item.name }}</div>
+        <div>{{ item.value }}</div>
       </div>
     </div>
 
@@ -68,9 +70,9 @@
         <div class="item" v-for="(item, index) in issueList" :key="index">
           <div class="question-box">
             <text class="spot"></text>
-            <text class="question">{{item.question}}</text>
+            <text class="question">{{ item.question }}</text>
           </div>
-          <div class="answer">{{item.answer}}</div>
+          <div class="answer">{{ item.answer }}</div>
         </div>
       </div>
     </div>
@@ -83,8 +85,8 @@
       <div class="sublist">
         <div v-for="(reitem, reindex) in recommendList" :key="reindex">
           <img :src="reitem.list_pic_url" alt />
-          <p>{{reitem.name}}</p>
-          <p>￥{{reitem.retail_price}}</p>
+          <p>{{ reitem.name }}</p>
+          <p>￥{{ reitem.retail_price }}</p>
         </div>
       </div>
     </div>
@@ -96,7 +98,7 @@
       </div>
       <div class="cart-box" @click="toCart">
         <div class="cart">
-          <span>{{allNumber}}</span>
+          <span>{{ allNumber }}</span>
           <img src="../../static/images/ic_menu_shopping_nor.png" alt />
         </div>
       </div>
@@ -113,7 +115,7 @@
         </div>
         <div class="right">
           <div>
-            <p>价格￥{{info.retail_price}}</p>
+            <p>价格￥{{ info.retail_price }}</p>
             <p>请选择数量</p>
           </div>
         </div>
@@ -149,19 +151,20 @@ export default {
       issueList: [], // 常见问题
       recommendList: [], // 大家都在看数据
       collectFlag: false, // 控制收藏状态
-      allNumber: 0
+      allNumber: 0, // 购物车角标显示数据库里有多少件商品
+      allPrice: 0, // 当前商品想添加进购物车的总价格
     };
   },
   // 使用富文本解析器：uparse
   components: {
-    uParse
+    uParse,
   },
   // 商品分享配置
   onShareAppMessage() {
     return {
       title: this.info.name,
       path: "pages/goods/main?id" + this.info.id,
-      imageUrl: this.gallery[0].img_url
+      imageUrl: this.gallery[0].img_url,
     };
   },
   mounted() {
@@ -176,7 +179,7 @@ export default {
        */
       const data = await get("/goods/detailaction", {
         id: this.id,
-        openId: this.openId
+        openId: this.openId,
       });
       console.log(data);
       this.info = data.info;
@@ -205,15 +208,43 @@ export default {
       this.collectFlag = !this.collectFlag;
       const data = await post("/collect/addcollect", {
         openId: this.openId,
-        goodsId: this.id
+        goodsId: this.id,
       });
     },
     toCart() {
       uni.switchTab({
-        url: "/pages/cart/cart"
+        url: "/pages/cart/cart",
       });
-    }
-  }
+    },
+    async buy() {
+      this.allPrice = this.info.retail_price;
+      if (this.showpop) {
+        if (this.number === 0) {
+          uni.showToast({
+            title: "请选择商品数量",
+            duration: 2000,
+            icon: "none",
+            mask: true,
+            success: (res) => {},
+          });
+          return false;
+        }
+        const data = await post("/order/submitaction", {
+          goodsId: this.id,
+          openId: this.openId,
+          allPrice: this.allPrice,
+        });
+        if (data) {
+          uni.navigateTo({
+            url: "/pages/order/order",
+          });
+        }
+      } else {
+        this.showpop = true;
+      }
+    },
+    addCart() {},
+  },
 };
 </script>
 
