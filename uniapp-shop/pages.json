@@ -1,6 +1,12 @@
 {
   "pages": [
     {
+      "path": "pages/operateaddress/operateaddress",
+      "style": {
+        "navigationBarTitleText": "修改地址"
+      }
+    },
+    {
       "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "首页"
@@ -65,15 +71,21 @@
       }
     },
     {
-      "path": "pages/order/order",
-      "style": {
-        "navigationBarTitleText": "订单"
-      }
-    },
-    {
       "path": "pages/atest/atest",
       "style": {
         "navigationBarTitleText": "测试"
+      }
+    },
+    {
+      "path": "pages/addaddress/addaddress",
+      "style": {
+        "navigationBarTitleText": "添加地址"
+      }
+    },
+    {
+      "path": "pages/order/order",
+      "style": {
+        "navigationBarTitleText": "订单"
       }
     }
   ],

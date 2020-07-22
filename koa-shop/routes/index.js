@@ -49,6 +49,23 @@ mp_router.post("/collect/addcollect", mp_controllers.collect.index.addCollect);
 /**
  * 订单相关的接口
  */
+// 商品详情页立即购买按钮
 mp_router.post("/order/submitaction", mp_controllers.order.index.submitAction);
+// 获取购买商品的金额,运费等信息
+mp_router.get("/order/detailaction", mp_controllers.order.index.detailAction);
+
+
+/**
+ * 购物车相关接口
+ */
+// 将商品加入购物车
+mp_router.post("/cart/addcart", mp_controllers.cart.index.addCart);
+
+
+/**
+ * 地址相关接口
+ */
+// 获取地址列表
+mp_router.get("/address/getlistaction", mp_controllers.address.index.getListAction);
 
 module.exports = mp_router;

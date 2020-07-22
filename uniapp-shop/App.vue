@@ -1,34 +1,33 @@
 <script>
-	/**
-	 * vuex管理登陆状态，具体可以参考官方登陆模板示例
-	 */
-	import {
-		mapMutations
-	} from 'vuex';
-	export default {
-		methods: {
-			...mapMutations(['login'])
-		},
-		onLaunch: function() {
-			let userInfo = uni.getStorageSync('userInfo') || '';
-			if(userInfo.id){
-				//更新登陆状态
-				uni.getStorage({
-					key: 'userInfo',
-					success: (res) => {
-						this.login(res.data);
-					}
-				});
-			}
-			
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		},
-	}
+/**
+ * vuex管理登陆状态，具体可以参考官方登陆模板示例
+ */
+import { mapMutations } from "vuex";
+export default {
+  methods: {
+    ...mapMutations(["login"])
+  },
+  onLaunch: function() {
+    uni.setStorageSync("userInfo", userInfo);
+    let userInfo = uni.getStorageSync("userInfo") || "";
+    console.log(userInfo);
+    if (userInfo.id) {
+      //更新登陆状态
+      uni.getStorage({
+        key: "userInfo",
+        success: res => {
+          this.login(res.data);
+        }
+      });
+    }
+  },
+  onShow: function() {
+    console.log("App Show");
+  },
+  onHide: function() {
+    console.log("App Hide");
+  }
+};
 // export default {
 //   created() {
 //     // 调用API从本地缓存中获取数据

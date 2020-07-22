@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/operateaddress/operateaddress",
     "pages/index/index",
     "pages/search/search",
     "pages/goods/goods",
@@ -11,8 +12,9 @@
     "pages/brandlist/brandlist",
     "pages/newgoods/newgoods",
     "pages/topicdetail/topicdetail",
-    "pages/order/order",
-    "pages/atest/atest"
+    "pages/atest/atest",
+    "pages/addaddress/addaddress",
+    "pages/order/order"
   ],
   "subPackages": [],
   "window": {
@@ -62,6 +64,5 @@
     "position": "bottom"
   },
   "permission": {},
-  "usingComponents": {},
-  "sitemapLocation": "sitemap54.json"
+  "usingComponents": {}
 }

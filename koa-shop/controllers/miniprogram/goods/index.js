@@ -1,4 +1,5 @@
 const { mysql } = require("../../../mysql");
+const cart = require("../cart");
 
 async function detailAction(ctx) {
   /**
@@ -68,7 +69,7 @@ async function detailAction(ctx) {
     .column("number")
     .select();
   let allNumber = 0;
-  if (cartNumber > 0) {
+  if (cartNumber) {
     for (let i = 0; i < cartNumber.length; ++i) {
       const element = cartNumber[i];
       allNumber += element.number;

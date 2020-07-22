@@ -1,4 +1,5 @@
 <template>
+  <!-- 商品详情页面 -->
   <div class="goods">
     <!-- swiper 放轮播图，并设定播放时间等 -->
     <div class="swiper">
@@ -17,9 +18,7 @@
         </blok>
       </swiper>
       <!-- 小程序分享 -->
-      <button class="share" hover-class="none" open-type="share" value>
-        分享商品
-      </button>
+      <button class="share" hover-class="none" open-type="share" value>分享商品</button>
     </div>
 
     <!-- 商品服务政策 -->
@@ -145,26 +144,26 @@ export default {
       openId: "", // 用户id
       brand: [], // 商品简短描述
       showpop: false, // 是否弹出选择规格数量
-      number: 1, // 选择商品数量的默认值
+      number: 1, // 选择想要购买的商品数量
       attribute: [], // 商品规格参数
       goods_desc: "", // 商品详情
       issueList: [], // 常见问题
       recommendList: [], // 大家都在看数据
       collectFlag: false, // 控制收藏状态
       allNumber: 0, // 购物车角标显示数据库里有多少件商品
-      allPrice: 0, // 当前商品想添加进购物车的总价格
+      allPrice: 0 // 当前商品想添加进购物车的总价格
     };
   },
   // 使用富文本解析器：uparse
   components: {
-    uParse,
+    uParse
   },
   // 商品分享配置
   onShareAppMessage() {
     return {
       title: this.info.name,
       path: "pages/goods/main?id" + this.info.id,
-      imageUrl: this.gallery[0].img_url,
+      imageUrl: this.gallery[0].img_url
     };
   },
   mounted() {
@@ -179,7 +178,7 @@ export default {
        */
       const data = await get("/goods/detailaction", {
         id: this.id,
-        openId: this.openId,
+        openId: this.openId
       });
       console.log(data);
       this.info = data.info;
@@ -192,12 +191,21 @@ export default {
       this.allNumber = data.allNumber;
     },
     showType() {
+      /**
+       * 是否显示弹出框
+       */
       this.showpop = !this.showpop;
     },
     add() {
+      /**
+       * 商品数量加1
+       */
       this.number += 1;
     },
     reduce() {
+      /**
+       * 商品数量减1
+       */
       if (this.number > 1) {
         this.number -= 1;
       } else {
@@ -205,18 +213,27 @@ export default {
       }
     },
     async collect() {
+      /**
+       * 收藏
+       */
       this.collectFlag = !this.collectFlag;
       const data = await post("/collect/addcollect", {
         openId: this.openId,
-        goodsId: this.id,
+        goodsId: this.id
       });
     },
     toCart() {
+      /**
+       * 去购物车页面
+       */
       uni.switchTab({
-        url: "/pages/cart/cart",
+        url: "/pages/cart/cart"
       });
     },
     async buy() {
+      /**
+       * 立即购买
+       */
       this.allPrice = this.info.retail_price;
       if (this.showpop) {
         if (this.number === 0) {
@@ -225,26 +242,57 @@ export default {
             duration: 2000,
             icon: "none",
             mask: true,
-            success: (res) => {},
+            success: res => {}
           });
           return false;
         }
-        const data = await post("/order/submitaction", {
-          goodsId: this.id,
+        const data = await post("/order/submitAction", {
+          goodsId: this.goodsId,
           openId: this.openId,
-          allPrice: this.allPrice,
+          allPrice: this.allPrice
         });
         if (data) {
           uni.navigateTo({
-            url: "/pages/order/order",
+            url: "/pages/order/order"
           });
         }
       } else {
         this.showpop = true;
       }
     },
-    addCart() {},
-  },
+    async addCart() {
+      /**
+       * 加入购物车
+       */
+      if (this.showpop) {
+        if (this.number === 0) {
+          uni.showToast({
+            title: "请选择商品数量",
+            duration: 2000,
+            icon: "none",
+            mask: true,
+            success: res => {}
+          });
+          return false;
+        }
+        const data = await post("/cart/addcart", {
+          openId: this.openId,
+          goodsId: this.id,
+          number: this.number
+        });
+        if (data) {
+          this.allNumber += this.number;
+          uni.showToast({
+            title: "添加购物车成功",
+            icon: "success",
+            duration: 1500
+          });
+        }
+      } else {
+        this.showpop = true;
+      }
+    }
+  }
 };
 </script>
 

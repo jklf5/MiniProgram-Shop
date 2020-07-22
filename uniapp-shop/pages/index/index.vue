@@ -1,4 +1,5 @@
 <template>
+  <!-- 首页 -->
   <div class="index">
     <!-- 头部定位与搜索 -->
     <div class="search">
