@@ -1,0 +1,26 @@
+首页
+	nideshop_ad： 首页轮播图数据
+	nideshop_channel： 首页小频道数据
+	nideshop_brand： 首页品牌数据
+	nideshop_goods: 物品数据
+	nideshop_topic: 专题精选
+	nideshop_category: **好物
+
+搜索页面
+	nideshop_search_history : 用户的历史搜索记录
+	nideshop_keywords : 存放热门商品关键字（尽量少存）
+	
+商品详情页面
+	nideshop_goods_gallery: 存放商品的图片
+	nideshop_goods_attribute : 存放商品参数value字段
+	nideshop_attribute : 存放商品参数name字段    nideshop_goods_attribute.attribute_id = nideshop_attribute.id
+	nideshop_goods_issue: 常见问题
+	nideshop_goods 中的category_id : 大家都在看
+	
+nideshop_collect : 收藏状态
+
+nideshop_cart : 购物车
+
+nideshop_order : 存放购物订单
+
+nideshop_address：收货地址
