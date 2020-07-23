@@ -52,7 +52,7 @@ async function saveAction(ctx) {
   }
 
   if (!addressId) {
-    // 添加地址
+    // 新增地址
     const data = await mysql('nideshop_address').insert({
       name: userName,
       mobile: telNumber,

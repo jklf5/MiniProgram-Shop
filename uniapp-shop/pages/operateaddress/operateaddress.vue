@@ -83,6 +83,9 @@ export default {
       _this.listData = data.data;
     },
     selAddress(id) {
+      /*
+      * 选择该地址
+       */
       uni.setStorageSync("addressId", id);
       uni.navigateBack({
         delta: 1

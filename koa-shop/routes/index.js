@@ -67,5 +67,9 @@ mp_router.post("/cart/addcart", mp_controllers.cart.index.addCart);
  */
 // 获取地址列表
 mp_router.get("/address/getlistaction", mp_controllers.address.index.getListAction);
+// 保存地址
+mp_router.post("/address/saveaction", mp_controllers.address.index.saveAction)
+// 
+mp_router.get("/address/detailaction", mp_controllers.address.index.detailAction)
 
 module.exports = mp_router;
