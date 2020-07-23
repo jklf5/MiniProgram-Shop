@@ -393,7 +393,7 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
                 false);case 5:_context3.next = 7;return (
 
                   (0, _utils.post)("/order/submitAction", {
-                    goodsId: _this3.goodsId,
+                    goodsId: _this3.id,
                     openId: _this3.openId,
                     allPrice: _this3.allPrice }));case 7:data = _context3.sent;
 

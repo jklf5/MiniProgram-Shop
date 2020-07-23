@@ -1,0 +1,11 @@
+待做：
+	性能优化
+	goods页面一次加载的太多
+	获取用户登录信息
+	
+
+bug：
+	goods页面点击立即购买按钮后
+	goods回search后，搜索的关键字words清空不了
+	permission编译不进app.json
+	

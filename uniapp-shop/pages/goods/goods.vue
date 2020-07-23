@@ -247,7 +247,7 @@ export default {
           return false;
         }
         const data = await post("/order/submitAction", {
-          goodsId: this.goodsId,
+          goodsId: this.id,
           openId: this.openId,
           allPrice: this.allPrice
         });

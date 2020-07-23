@@ -8,7 +8,7 @@
           <div class="addresslist">
             <div>
               <span>{{ address.name }}</span>
-              <div class="moren">默认</div>
+              <div class="moren" v-if="isDefault">默认</div>
             </div>
             <div class="info">
               <p>{{ address.mobile }}</p>
@@ -76,7 +76,8 @@ export default {
       openId: "", // 用户id
       id: "", // 商品id
       addressId: "", //
-      listData: [] //
+      listData: [], //
+      isDefault: ""
     };
   },
   onShow() {
@@ -117,7 +118,10 @@ export default {
         // this.allprice = data.price
         this.listData = data.goodsList;
         this.address = data.address;
+        this.isDefault = data.address.is_default;
       }
+      // console.log(this.isDefault)
+      this.allPrice = 0
       this.listData.map(item => {
         this.allPrice =
           Number(item.retail_price * item.number) + Number(this.allPrice);

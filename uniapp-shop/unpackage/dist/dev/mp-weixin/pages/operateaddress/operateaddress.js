@@ -215,6 +215,9 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
                 _this.listData = data.data;case 6:case "end":return _context.stop();}}}, _callee);}))();
     },
     selAddress: function selAddress(id) {
+      /*
+                                         * 选择该地址
+                                          */
       uni.setStorageSync("addressId", id);
       uni.navigateBack({
         delta: 1 });

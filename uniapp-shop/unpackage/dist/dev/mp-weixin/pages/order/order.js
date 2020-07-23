@@ -208,8 +208,9 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
       openId: "", // 用户id
       id: "", // 商品id
       addressId: "", //
-      listData: [] //
-    };
+      listData: [], //
+      isDefault: "" };
+
   },
   onShow: function onShow() {
     if (uni.getStorageSync("addressId")) {
@@ -249,11 +250,14 @@ var _utils = __webpack_require__(/*! ../../utils */ 23);function _interopRequire
                   // this.allprice = data.price
                   _this.listData = data.goodsList;
                   _this.address = data.address;
+                  _this.isDefault = data.address.is_default;
                 }
+                // console.log(this.isDefault)
+                _this.allPrice = 0;
                 _this.listData.map(function (item) {
                   _this.allPrice =
                   Number(item.retail_price * item.number) + Number(_this.allPrice);
-                });case 6:case "end":return _context.stop();}}}, _callee);}))();
+                });case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
     pay: function pay() {
       /**

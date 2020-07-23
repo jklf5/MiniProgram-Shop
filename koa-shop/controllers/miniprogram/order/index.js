@@ -9,16 +9,19 @@ async function submitAction(ctx) {
   let allPrice = ctx.request.body.allPrice
   // 是否存在订单
   const isOrder = await mysql('nideshop_order').where({
-    'user_id': openId
+    'user_id': openId,
   }).select()
   if (isOrder.length > 0) {
+    original = isOrder[0].goods_id
+    console.log(original + "," + goodsId)
     const data = await mysql('nideshop_order').where({
       'user_id': openId
     }).update({
       user_id: openId,
-      goods_id: goodsId,
+      goods_id: original + "," + goodsId,
       allprice: allPrice
     })
+    // console.log(data)
     if (data) {
       ctx.body = {
         data: true
@@ -56,7 +59,6 @@ async function detailAction(ctx) {
     'user_id': openId
   }).select()
   var goodsIds = orderDetail[0].goods_id.split(',')
-
   const list = await mysql('nideshop_cart').andWhere({
     'user_id': openId
   }).whereIn('goods_id', goodsIds).select()
