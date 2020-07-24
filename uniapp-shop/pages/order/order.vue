@@ -76,8 +76,8 @@ export default {
       openId: "", // 用户id
       id: "", // 商品id
       addressId: "", //
-      listData: [], //
-      isDefault: ""
+      listData: [], // 购买的商品信息列表
+      isDefault: "" // 地址是否是默认地址
     };
   },
   onShow() {

@@ -21,13 +21,14 @@
     {
       "path": "pages/goods/goods",
       "style": {
-        "navigationBarTitleText": "商品"
+        "navigationBarTitleText": "商品详情"
       }
     },
     {
       "path": "pages/topic/topic",
       "style": {
-        "navigationBarTitleText": "修改资料"
+        "navigationBarTitleText": "专题",
+        "enablePullDownRefresh": true
       }
     },
     {
@@ -39,7 +40,7 @@
     {
       "path": "pages/category/category",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "分类"
       }
     },
     {
@@ -56,9 +57,7 @@
     },
     {
       "path": "pages/brandlist/brandlist",
-      "style": {
-        "navigationBarTitleText": ""
-      }
+      "style": {}
     },
     {
       "path": "pages/newgoods/newgoods",
@@ -67,7 +66,7 @@
     {
       "path": "pages/topicdetail/topicdetail",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "专题详情"
       }
     },
     {
@@ -86,6 +85,12 @@
       "path": "pages/order/order",
       "style": {
         "navigationBarTitleText": "订单"
+      }
+    },
+    {
+      "path": "pages/categorylist/categorylist",
+      "style": {
+        "navigationBarTitleText": "分类"
       }
     }
   ],
