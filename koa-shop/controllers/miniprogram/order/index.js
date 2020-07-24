@@ -1,27 +1,21 @@
-const { mysql } = require("../../../mysql");
+const { mysql } = require('../../../mysql')
 
-async function submitAction(ctx) {
-  /**
-   * 商品详情页立即购买按钮
-   */
+async function submitAction (ctx) {
   const { openId } = ctx.request.body
   let goodsId = ctx.request.body.goodsId
   let allPrice = ctx.request.body.allPrice
   // 是否存在订单
   const isOrder = await mysql('nideshop_order').where({
-    'user_id': openId,
+    'user_id': openId
   }).select()
   if (isOrder.length > 0) {
-    original = isOrder[0].goods_id
-    console.log(original + "," + goodsId)
     const data = await mysql('nideshop_order').where({
       'user_id': openId
     }).update({
       user_id: openId,
-      goods_id: original + "," + goodsId,
+      goods_id: goodsId,
       allprice: allPrice
     })
-    // console.log(data)
     if (data) {
       ctx.body = {
         data: true
@@ -49,16 +43,14 @@ async function submitAction(ctx) {
   }
 }
 
-async function detailAction(ctx) {
-  /**
-   * 获取购买商品的金额,运费等信息
-   */
+async function detailAction (ctx) {
   const openId = ctx.query.openId
   const addressId = ctx.query.addressId || ''
   const orderDetail = await mysql('nideshop_order').where({
     'user_id': openId
   }).select()
   var goodsIds = orderDetail[0].goods_id.split(',')
+
   const list = await mysql('nideshop_cart').andWhere({
     'user_id': openId
   }).whereIn('goods_id', goodsIds).select()
@@ -84,4 +76,4 @@ async function detailAction(ctx) {
 module.exports = {
   submitAction,
   detailAction
-};
+}

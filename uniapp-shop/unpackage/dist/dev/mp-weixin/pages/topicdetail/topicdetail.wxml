@@ -1,1 +1,1 @@
-<view class="_div"></view>
+<view class="topicdetail _div data-v-ee3e3bf0"><view class="content _div data-v-ee3e3bf0"><block wx:if="{{goods_desc}}"><view class="detail _div data-v-ee3e3bf0"><u-parse vue-id="d9884004-1" content="{{goods_desc}}" class="data-v-ee3e3bf0" bind:__l="__l"></u-parse></view></block></view></view>

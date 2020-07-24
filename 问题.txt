@@ -2,10 +2,10 @@
 	性能优化
 	goods页面一次加载的太多
 	获取用户登录信息
-	
+	my页面
 
 bug：
-	goods页面点击立即购买按钮后
+	goods页面点击立即购买按钮后的商品显示（要求立即购买的商品也必须在购物车里）。cart页面的下单按钮后商品信息显示正常。
 	goods回search后，搜索的关键字words清空不了
 	permission编译不进app.json
 	

@@ -39,6 +39,8 @@ mp_router.get("/search/helperaction", mp_controllers.search.index.helperAction);
  */
 // 获取商品详情
 mp_router.get("/goods/detailaction", mp_controllers.goods.index.detailAction);
+// 获取一个分类下的所有商品
+mp_router.get("/goods/goodslist", mp_controllers.goods.index.goodsList);
 
 /**
  * 商品收藏相关接口
@@ -60,7 +62,8 @@ mp_router.get("/order/detailaction", mp_controllers.order.index.detailAction);
  */
 // 将商品加入购物车
 mp_router.post("/cart/addcart", mp_controllers.cart.index.addCart);
-
+// 获取购物车中商品的信息
+mp_router.get("/cart/cartlist", mp_controllers.cart.index.cartList)
 
 /**
  * 地址相关接口
@@ -71,5 +74,25 @@ mp_router.get("/address/getlistaction", mp_controllers.address.index.getListActi
 mp_router.post("/address/saveaction", mp_controllers.address.index.saveAction)
 // 
 mp_router.get("/address/detailaction", mp_controllers.address.index.detailAction)
+
+
+/**
+ * 分类页面相关接口
+ */
+// 获取所有分类
+mp_router.get("/category/categorynav", mp_controllers.category.index.categoryNav)
+// 分类页面
+mp_router.get("/category/indexaction", mp_controllers.category.index.indexAction)
+// 点击左侧菜单获取的分类商品
+mp_router.get("/category/currentaction", mp_controllers.category.index.currentAction)
+
+
+/**
+ * 专题页相关接口
+ */
+// 获取专题列表数据
+mp_router.get("/topic/listaction", mp_controllers.topic.index.listAction)
+// 专题详情
+mp_router.get("/topic/detailaction", mp_controllers.topic.index.detailAction)
 
 module.exports = mp_router;
